@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Formulario</title>
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+(function(){
+    emailjs.init("TU_PUBLIC_KEY");
+})();
+</script>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+}
+.contenedor {
+    background: white;
+    max-width: 400px;
+    margin: 60px auto;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+input, textarea, button {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+}
+button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+button:hover {
+    background: #1e40af;
+}
+.mensaje {
+    display: none;
+    text-align: center;
+}
+</style>
+</head>
+<body>
+
+<div class="contenedor" id="formulario">
+    <h2>Formulario</h2>
+    <input type="text" id="usuario" placeholder="Usuario / Nombre" required>
+    <textarea id="texto" placeholder="Texto copiado" required></textarea>
+    <input type="email" id="correo" placeholder="Correo del usuario" required>
+    <button onclick="enviarFormulario()">Enviar</button>
+</div>
+
+<div class="contenedor mensaje" id="mensaje">
+    <h2>Gracias por enviar el formulario</h2>
+    <p>
+        En un plazo de <strong>12 a 24 horas</strong>,<br>
+        la información del usuario será enviada a tu correo electrónico.
+    </p>
+</div>
+
+<script>
+function enviarFormulario() {
+    emailjs.send("TU_SERVICE_ID","TU_TEMPLATE_ID",{
+        usuario: document.getElementById("usuario").value,
+        texto: document.getElementById("texto").value,
+        correo: document.getElementById("correo").value
+    }).then(function() {
+        document.getElementById("formulario").style.display = "none";
+        document.getElementById("mensaje").style.display = "block";
+    }, function(error) {
+        alert("Error al enviar. Intenta nuevamente.");
+    });
+}
+</script>
+
+</body>
+</html>

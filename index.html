@@ -53,23 +53,16 @@
             margin-top: 20px;
         }
     </style>
-    <!-- EmailJS SDK -->
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
-    <script type="text/javascript">
-        // Inicializar EmailJS con tu Public Key
-        (function(){
-            emailjs.init("vbdxDlkyi1kNet13d");
-        })();
-    </script>
 </head>
 <body>
 <div class="container">
     <h1>Información del usuario</h1>
-    <form id="formulario">
-        <input type="text" id="usuario" placeholder="Usuario" required><br>
-        <textarea id="texto" placeholder="Texto copiado" rows="4" required></textarea><br>
-        <input type="email" id="correo" placeholder="Correo" required><br>
-        <button type="button" onclick="enviarFormulario()">Enviar</button>
+    <!-- Link de Formspree ya actualizado -->
+    <form id="formulario" action="https://formspree.io/f/mgovovrb" method="POST">
+        <input type="text" name="usuario" placeholder="Usuario" required><br>
+        <textarea name="texto" placeholder="Texto copiado" rows="4" required></textarea><br>
+        <input type="email" name="correo" placeholder="Correo" required><br>
+        <button type="submit">Enviar</button>
     </form>
     <div id="mensaje">
         ¡Formulario enviado! Por favor, espera de 12 a 24 horas para que te mandemos la información a tu correo.
@@ -77,20 +70,19 @@
 </div>
 
 <script>
-function enviarFormulario() {
-    emailjs.send("service_9xolqhc", "template_eogisfu", {
-        usuario: document.getElementById("usuario").value,
-        texto: document.getElementById("texto").value,
-        correo: document.getElementById("correo").value
-    }).then(function() {
-        document.getElementById("formulario").style.display = "none";
-        document.getElementById("mensaje").style.display = "block";
-    }, function(error) {
-        alert("Error al enviar. Intenta nuevamente.");
-        console.log(error);
-    });
-}
-</script>
+const form = document.getElementById('formulario');
 
-</body>
-</html>
+form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    const data = new FormData(form);
+    
+    fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).then(response => {
+        if (response.ok) {
+            form.style.display = 'none';
+            document.getElementById('m

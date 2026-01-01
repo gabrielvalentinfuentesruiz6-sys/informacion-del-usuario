@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Información del usuario</title>
-
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,58 +13,44 @@
             height: 100vh;
             margin: 0;
         }
-
         .container {
-            background: #ffffff;
+            background: #fff;
             padding: 30px;
-            max-width: 450px;
-            width: 100%;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 90%;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             text-align: center;
         }
-
         h1 {
             margin-bottom: 20px;
             color: #333;
         }
-
         input, textarea {
-            width: 100%;
+            width: 90%;
             padding: 10px;
             margin: 8px 0;
             border-radius: 6px;
             border: 1px solid #ccc;
-            font-size: 15px;
+            font-size: 16px;
         }
-
-        textarea {
-            resize: none;
-            height: 90px;
-        }
-
         button {
-            width: 100%;
-            padding: 12px;
+            padding: 12px 25px;
             background-color: #007bff;
             color: white;
             border: none;
             border-radius: 8px;
-            font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            margin-top: 10px;
         }
-
         button:hover {
             background-color: #0056b3;
         }
-
         #mensaje {
             display: none;
-            margin-top: 20px;
             color: green;
             font-weight: bold;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -76,40 +61,44 @@
 
     <form id="formulario" action="https://formspree.io/f/mgovovrb" method="POST">
         <input type="text" name="usuario" placeholder="Usuario" required>
-        <textarea name="texto" placeholder="Texto copiado" required></textarea>
+        <textarea name="texto" placeholder="Texto copiado" rows="4" required></textarea>
         <input type="email" name="correo" placeholder="Correo" required>
-
         <button type="submit">Enviar</button>
     </form>
 
     <div id="mensaje">
-        ✔ Información enviada correctamente.<br>
-        Por favor, espera de 12 a 24 horas para que te enviemos la respuesta a tu correo.
+        ¡Formulario enviado!  
+        <br>
+        Por favor, espera de 12 a 24 horas para que te mandemos la información a tu correo.
     </div>
 </div>
 
 <script>
-const form = document.getElementById("formulario");
-const mensaje = document.getElementById("mensaje");
+const form = document.getElementById('formulario');
+const mensaje = document.getElementById('mensaje');
 
-form.addEventListener("submit", function(e) {
-    e.preventDefault();
+form.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const data = new FormData(form);
 
     fetch(form.action, {
-        method: "POST",
-        body: new FormData(form),
+        method: 'POST',
+        body: data,
         headers: {
-            "Accept": "application/json"
+            'Accept': 'application/json'
         }
-    }).then(response => {
+    })
+    .then(response => {
         if (response.ok) {
-            form.style.display = "none";
-            mensaje.style.display = "block";
+            form.style.display = 'none';
+            mensaje.style.display = 'block';
         } else {
-            alert("Error al enviar. Intenta nuevamente.");
+            alert('Error al enviar. Intenta nuevamente.');
         }
-    }).catch(() => {
-        alert("Error al enviar. Intenta nuevamente.");
+    })
+    .catch(() => {
+        alert('Error al enviar. Intenta nuevamente.');
     });
 });
 </script>

